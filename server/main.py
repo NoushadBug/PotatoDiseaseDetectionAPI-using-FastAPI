@@ -6,9 +6,9 @@ from PIL import Image
 import tensorflow as tf
 import os
 
-model_version = max([int(i) for i in os.listdir("./models/") + [0]])
+model_version = max([int(i) for i in os.listdir("server/models/") + [0]])
 
-MODEL = tf.keras.models.load_model("./models/"+str(model_version))
+MODEL = tf.keras.models.load_model("server/models/"+str(model_version))
 CLASS_NAMES = ["Early Blight", "Late Blight", "Healthy"]
 
 app_desc = """<h2>Try this api by uploading potato leaf images with `/predict/`</h2>

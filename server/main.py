@@ -1,4 +1,5 @@
 from fastapi import FastAPI, File, UploadFile
+from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 import numpy as np
 from io import BytesIO
@@ -16,6 +17,14 @@ app_desc = """<h2>Try this api by uploading potato leaf images with `/predict/`<
 <br>created by: Noushad Bhuiyan"""
 
 app = FastAPI(title='Potato Disease Detector', description=app_desc)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origin_regex="http.*",
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/", include_in_schema=False)
 async def index():
